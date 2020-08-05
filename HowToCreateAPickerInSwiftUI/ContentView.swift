@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var selection = 0
+    
+    let colors = ["Blue", "Red", "Orange", "Yellow"]
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Picker(selection: $selection, label: Text("Picker"), content: /*@START_MENU_TOKEN@*/{
+                ForEach(0 ..< colors.count) { index in
+                    Text(self.colors[index]).tag(index)
+                }
+            }/*@END_MENU_TOKEN@*/)
+            
+            Text("You have selected a color which is: \(colors[selection])")
+                .padding()
+        }
     }
 }
 
